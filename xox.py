@@ -6,15 +6,19 @@ X = 2
 O = 3
 
 
-class Win(Exception):
+class Over(Exception):
     pass
 
 
-class Lose(Exception):
+class Win(Over):
     pass
 
 
-class Draw(Exception):
+class Lose(Over):
+    pass
+
+
+class Draw(Over):
     pass
 
 
@@ -83,22 +87,21 @@ class XOX:
         return False
 
     def is_draw(self):
-        return np.all(self.state != 1)
+        return np.all(self.state != E)
 
     def start(self):
         while True:
             try:
                 self.show()
                 self.move(int(input("Enter your move: ")))
-            except Win:
+            except Over as e:
                 self.show()
-                print("You win!")
+                if isinstance(e, Win):
+                    print("You win!")
+                elif isinstance(e, Lose):
+                    print("You lose!")
+                elif isinstance(e, Draw):
+                    print("Draw!")
                 break
-            except Lose:
-                self.show()
-                print("You lose!")
-                break
-            except Draw:
-                self.show()
-                print("Draw!")
-                break
+            except Exception as e:
+                print(f"Error: {e}")
