@@ -60,13 +60,13 @@ class XOX:
         self.switch()
         self.update()
 
-    def encode(self):
+    def string(self):
         return "".join(
             np.where(self.state == X, "x", np.where(self.state == O, "o", "."))
         )
 
     def show(self):
-        s = self.encode()
+        s = self.string()
         for i in range(0, len(s), 3):
             print(s[i : i + 3])
 
