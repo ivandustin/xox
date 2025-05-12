@@ -33,7 +33,7 @@ class XOX:
 
     def random(self):
         x = np.random.random(self.state.shape)
-        x = np.where(self.state != 1, 0, x)
+        x = np.where(self.state != E, 0, x)
         return x.argmax() + 1
 
     def ai(self):
