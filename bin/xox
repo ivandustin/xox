@@ -1,0 +1,4 @@
+#!/usr/bin/env python
+from xox.game import game
+
+game()
